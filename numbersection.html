@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="numsecstyle.css" />
+  </head>
+  <body>
+    <h1 class="title">scroll to active</h1>
+    <div style="height: 100vh; border: 1px solid #000"></div>
+    <div style="height: 100vh; border: 1px solid #000"></div>
+    <div style="height: 100vh; border: 1px solid #000"></div>
+    <div class="counters">
+      <div>
+        <div class="counter">
+          <h1><span data-count="52">0</span></h1>
+          <h3>projects complated</h3>
+        </div>
+        <div class="counter">
+          <h1>
+            <span data-count="17">0</span>~<span data-count="23">0</span>%
+          </h1>
+          <h3>satisfied clients</h3>
+        </div>
+        <div class="counter">
+          <h1><span data-count="80">0</span></h1>
+          <h3>projects complated</h3>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 100vh; border: 1px solid #000"></div>
+
+    <script>
+      const counters = document.querySelectorAll(".counter span");
+      const container = document.querySelector(".counters");
+
+      let activated = false;
+
+      window.addEventListener("scroll", () => {
+        if (
+          pageYOffset > container.offsetTop - container.offsetHeight - 200 &&
+          activated === false
+        ) {
+          counters.forEach((counter) => {
+            counter.innerText = 0;
+            let count = 0;
+
+            function updateCount() {
+              const target = parseInt(counter.dataset.count);
+              if (count < target) {
+                count++;
+                counter.innerText = count;
+                setTimeout(updateCount, 10);
+              } else {
+                counter.innerText = target;
+              }
+            }
+            updateCount();
+            activated = true;
+          });
+        } else if (
+          pageYOffset < container.offsetTop - container.offsetHeight - 500 ||
+          (pageXOffset === 0 && activated === true)
+        ) {
+          counters.forEach((counter) => {
+            counter.innerText = 0;
+          });
+          activated = false;
+        }
+      });
+    </script>
+  </body>
+</html>

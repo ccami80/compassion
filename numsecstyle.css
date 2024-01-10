@@ -1,0 +1,26 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+.title{
+  text-align:center;
+  margin:1em
+}
+.counters{
+  margin:300px 0 ;
+  background:#09f;
+  color:#fff;
+  text-align:center;
+}
+.counters>div{
+  margin-top:100px;
+  max-width:900px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+}
+.counter{}
+.box{
+
+}
